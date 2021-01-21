@@ -1,0 +1,4 @@
+nome: Artur idade 26
+nome: Joao idade 33
+nome: Pedro idade 33
+nome: Julia idade 50
