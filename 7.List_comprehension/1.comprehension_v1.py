@@ -1,11 +1,11 @@
-#sintaxe normal
+# sintaxe normal
 dobros = []
 
-for i in range(1,11):
+for i in range(1, 11):
     dobros.append(i*2)
 print(dobros)
 
-#Comprehension
+# Comprehension
 
 dobros2 = [i*2 for i in range(10)]
 print(dobros2)
