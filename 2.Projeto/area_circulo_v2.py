@@ -8,4 +8,4 @@ def circulo(raio):
 if __name__ == '__main__':
     raio = input('Informe o raio: ')
     area = circulo(raio)
-    print('área do Círculo: ',area)
+    print('área do Círculo: ', area)

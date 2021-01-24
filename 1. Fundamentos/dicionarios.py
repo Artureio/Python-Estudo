@@ -10,7 +10,7 @@ print(pessoa.keys())
 print(pessoa.values())
 print(pessoa.items())
 
-#adicionar valor
+# adicionar valor
 pessoa['cursos'].append('angular')
 
 for a in pessoa:

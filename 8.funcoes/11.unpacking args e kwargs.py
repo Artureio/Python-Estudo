@@ -27,7 +27,7 @@ if __name__ == '__main__':
     print(build_block('bloco'))
     print(build_block('linha', inline=True))
     print(build_block('falhou', classe='error'))
-    print(build_block(build_list('Sábado', 'Domingo'), classe='info'))
-    print(build_block(build_list, 'Sábado', 'Domingo', classe='info'))
-    print(build_block(build_list, 'Sábado', 'Domingo',
+    print(build_block(build_list('Sabado', 'Domingo'), classe='info'))
+    print(build_block(build_list, 'Sabado', 'Domingo', classe='info'))
+    print(build_block(build_list, 'Sabado', 'Domingo',
                       classe='info', accesskey='m', type='square'))

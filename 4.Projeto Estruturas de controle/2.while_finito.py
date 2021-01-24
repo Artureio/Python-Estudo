@@ -8,9 +8,7 @@ def fibonacci(limite):
         print(proximo, end=', ')
         penultimo = ultimo
         ultimo = proximo
-        
+
 
 if __name__ == '__main__':
     fibonacci(20000)
-
-    

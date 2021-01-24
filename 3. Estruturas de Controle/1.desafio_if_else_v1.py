@@ -28,4 +28,3 @@ if __name__ == "__main__":
     nota = float(input('Informe a nota: '))
 
     funcao(nota)
-

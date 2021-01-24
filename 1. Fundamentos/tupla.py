@@ -1,5 +1,4 @@
-cores = ('amarelo', 'azul','branco')
+cores = ('amarelo', 'azul', 'branco')
 
 for a in cores:
-    print(cores.index(a) , a)
-
+    print(cores.index(a), a)
