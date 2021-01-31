@@ -2,6 +2,10 @@
 from datetime import datetime, timedelta
 
 
+class TarefaNaoEncontrada(Exception):
+    pass
+
+
 class Projeto:
     def __init__(self, nome):
         self.nome = nome
@@ -9,6 +13,11 @@ class Projeto:
 
     def __iter__(self):
         return self.tarefas.__iter__()
+
+    def __iadd__(self, tarefa):
+        tarefa.dono = self
+        self._add_tarefa(tarefa)
+        return self
 
     def _add_tarefa(self, tarefa, **kwargs):
         self.tarefas.append(tarefa)
@@ -23,7 +32,10 @@ class Projeto:
         funcao_escolhida(tarefa, **kwargs)
 
     def pendentes(self):
-        return [tarefa for tarefa in self.tarefas if not tarefa.feito]
+        try:
+            return [tarefa for tarefa in self.tarefas if not tarefa.feito]
+        except IndexError as e:
+            raise TarefaNaoEncontrada(str(e))
 
     def procurar(self, descricao):
         return [tar for tar in self.tarefas if tar.descricao == descricao][0]
@@ -60,11 +72,16 @@ class TarefaRecorrente(Tarefa):
     def __init__(self, descricao, vencimento, dias=7):
         super().__init__(descricao, vencimento)
         self.dias = dias
+        self.dono = None
 
     def concluir(self):
         super().concluir()
         novo_vencimento = datetime.now() + timedelta(days=self.dias)
-        return TarefaRecorrente(self.descricao, novo_vencimento, self.dias)
+        nova_tarefa = TarefaRecorrente(
+            self.descricao, novo_vencimento, self.dias)
+
+        if self.dono:
+            self.dono += nova_tarefa
 
 
 def main():
@@ -74,9 +91,8 @@ def main():
     casa.add('cozinhar',)
     casa.add('nenem')
     casa.procurar('cozinhar').concluir()
-    casa.tarefas.append(TarefaRecorrente('malhar', datetime.now(), 7))
-    casa.tarefas.append(casa.procurar('malhar').concluir())
-
+    casa += TarefaRecorrente('malhar', datetime.now(), 7)
+    casa.procurar('malhar').concluir()
     for tarefa in casa:
         print(f'- {tarefa}')
 
