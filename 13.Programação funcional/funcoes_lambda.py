@@ -1,6 +1,6 @@
 compras = (
-    {'quantidade': 2, 'valor':20},
-    {'quantidade': 3, 'valor':30},
+    {'quantidade': 2, 'valor': 20},
+    {'quantidade': 3, 'valor': 30},
     {'quantidade': 40, 'valor': 2}
 )
 
