@@ -1,4 +1,6 @@
-pessoas = [
+from functools import reduce
+
+pessoas = (
     {'nome': 'Pedro', 'idade': 14},
     {'nome': 'Mariana', 'idade': 15},
     {'nome': 'Artur', 'idade': 18},
@@ -8,15 +10,12 @@ pessoas = [
     {'nome': 'Thiago', 'idade': 74},
     {'nome': 'Angela', 'idade': 11},
     {'nome': 'Vitor', 'idade': 10}
-]
+)
 
-menores_idade = list(filter(lambda i: i['idade'] < 18, pessoas))
-print(menores_idade)
-print('---------------------------------------')
+so_idade_MAP = map(lambda i: i['idade'], pessoas)
 
-# DESAFIO: mostrar apenas os nomes com menos de 6 caracteres
-# utilizando FILTER
+menores_FILTER = filter(lambda i: i < 18, so_idade_MAP)
 
-nomes_pequenos = list(filter(lambda n: len(n['nome']) <= 5, pessoas))
+soma_idade_REDUCE = reduce(lambda idades, p: idades + p, menores_FILTER, 0)
 
-print(nomes_pequenos)
+print(soma_idade_REDUCE)
